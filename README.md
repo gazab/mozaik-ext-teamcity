@@ -1,4 +1,4 @@
-# Mozaïk jenkins widgets
+# Mozaïk TeamCity widgets
 
 [![License][license-image]][license-url]
 [![Travis CI][travis-image]][travis-url]
@@ -7,18 +7,17 @@
 [![Coverage Status][coverage-image]][coverage-url]
 ![widget count][widget-count-image]
 
-## Jenkins Client Configuration
+## TeamCity Client Configuration
 
-In order to use the Mozaïk jenkins widgets, you must configure its **client**.
+In order to use the Mozaïk TeamCity widgets, you must configure its **client**.
 
 ### parameters
 
 key                 | env key                         | required | description             | notes
 --------------------|---------------------------------|----------|-------------------------|-----------------------------------------------
-`baseUrl`           | JENKINS_API_BASE_URL            | yes      | *jenkins base url*      |
-`basicAuthUser`     | JENKINS_API_BASIC_AUTH_USER     | yes      | *jenkins auth user*     |
-`basicAuthPassword` | JENKINS_API_BASIC_AUTH_PASSWORD | yes      | *jenkins auth password* |
-`customCa`          | JENKINS_API_CUSTOM_CA           | no       | *jenkins certificate*   | require `mozaik-ext-jenkins >= 1.1.0`
+`baseUrl`           | TEAMCITY_API_BASE_URL            | yes      | *TeamCity base url*      |
+`basicAuthUser`     | TEAMCITY_API_BASIC_AUTH_USER     | yes      | *TeamCity auth user*     |
+`basicAuthPassword` | TEAMCITY_API_BASIC_AUTH_PASSWORD | yes      | *TeamCity auth password* |
 
 ### usage
 
@@ -26,8 +25,8 @@ key                 | env key                         | required | description  
 {
   //…
   api: {
-    jenkins: {
-      baseUrl: 'https://my-jenkins.ci',
+    teamcity: {
+      baseUrl: 'https://my-teamcity.ci',
         basicAuthUser:     'user',
         basicAuthPassword: 'password'
     }
@@ -37,47 +36,47 @@ key                 | env key                         | required | description  
 
 
 
-## Jenkins Job Builds
+## TeamCity Job Builds
 
 ![jenkins job builds](https://raw.githubusercontent.com/plouc/mozaik-ext-jenkins/master/preview/jenkins.job_builds.png)
 
-> Show jenkins job builds.
+> Show TeamCity job builds.
 
 ### parameters
 
 key     | required | description
 --------|----------|---------------
-`job`   | yes      | *jenkins job identifier*
-`title` | no       | *Widget title (`Jenkins job builds` if none provided)*
+`job`   | yes      | *TeamCity job identifier*
+`title` | no       | *Widget title (`TeamCity job builds` if none provided)*
 
 ### usage
 
 ```javascript
 {
-  type: 'jenkins.job_builds', job: 'my-job',
+  type: 'teamcity.job_builds', job: 'my-job',
   columns: 1, rows: 1, x: 0, y: 0
 }
 ```
 
 
 
-## Jenkins Job Builds Histogram
+## TeamCity Job Builds Histogram
 
-![jenkins job builds histogram](https://raw.githubusercontent.com/plouc/mozaik-ext-jenkins/master/preview/jenkins.job_builds_histogram.png)
+![TeamCity job builds histogram](https://raw.githubusercontent.com/plouc/mozaik-ext-jenkins/master/preview/jenkins.job_builds_histogram.png)
 
-> Show jenkins job builds histogram.
+> Show TeamCity job builds histogram.
 
 ### parameters
 
 key   | required | description
 ------|----------|---------------
-`job` | yes      | *jenkins job identifier*
+`job` | yes      | *TeamCity job identifier*
 
 ### usage
 
 ```javascript
 {
-  type: 'jenkins.job_builds_histogram', job: 'my-job',
+  type: 'teamcity.job_builds_histogram', job: 'my-job',
   columns: 1, rows: 1, x: 0, y: 0
 }
 ```
@@ -86,9 +85,9 @@ key   | required | description
 
 ## Jenkins Job Status
 
-![jenkins job status](https://raw.githubusercontent.com/plouc/mozaik-ext-jenkins/master/preview/jenkins.job_status.png)
+![TeamCity job status](https://raw.githubusercontent.com/plouc/mozaik-ext-jenkins/master/preview/jenkins.job_status.png)
 
-![jenkins job status bold](https://raw.githubusercontent.com/plouc/mozaik-ext-jenkins/master/preview/jenkins.job_status_bold.png)
+![TeamCity job status bold](https://raw.githubusercontent.com/plouc/mozaik-ext-jenkins/master/preview/jenkins.job_status_bold.png)
 
 > Display job current build status.
 
@@ -96,23 +95,23 @@ key   | required | description
 
 key      | required |description                                   | notes
 ---------|----------|----------------------------------------------|-----------------------------------------
-`job`    | yes      | *jenkins job identifier*                     |
-`layout` | no       | *widget layout* (none for default or 'bold') | require `mozaik-ext-jenkins >= 1.1.0`
+`job`    | yes      | *TeamCity job identifier*                     |
+`layout` | no       | *widget layout* (none for default or 'bold') | 
 
 ### usage
 
 ```javascript
 {
-  type: 'jenkins.job_status', job: 'my-job',
+  type: 'teamcity.job_status', job: 'my-job',
   columns: 1, rows: 1, x: 0, y: 0
 }
 ```
 
 
 
-## Jenkins View
+## TeamCity View
 
-![jenkins view](https://raw.githubusercontent.com/plouc/mozaik-ext-jenkins/master/preview/jenkins.view.png)
+![TeamCity view](https://raw.githubusercontent.com/plouc/mozaik-ext-jenkins/master/preview/jenkins.view.png)
 
 > List view jobs
 
@@ -120,14 +119,14 @@ key      | required |description                                   | notes
 
 key     | required | description
 --------|----------|---------------
-`view`  | yes      | *jenkins view identifier*
+`view`  | yes      | *TeamCity view identifier*
 `title` | no       | *widget title (view name used if none provided)*
 
 ### usage
 
 ```javascript
 {
-    type: 'jenkins.view', view: 'dev-env',
+    type: 'teamcity.view', view: 'dev-env',
     columns: 2, rows: 1, x: 0, y: 0
 }
 ```

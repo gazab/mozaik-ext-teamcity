@@ -14,7 +14,7 @@ const viewBuildTypes = [
 
 
 /**
- * Configures and returns jenkins client.
+ * Configures and returns TeamCity client.
  *
  * @param {Mozaik} mozaik
  * @returns {Object}
@@ -22,36 +22,22 @@ const viewBuildTypes = [
 const client = mozaik => {
 
     mozaik.loadApiConfig(config);
-    const caFilePath = config.get('jenkins.customCa');
-    let certificate;
-
-    if (caFilePath.length > 0) {
-        try {
-            certificate = fs.readFileSync(caFilePath);
-        } catch(error) {
-            mozaik.logger.error(chalk.red(`[jenkins] an error occurred while trying to read custom certificate (${ error })`));
-            throw error;
-        }
-    }
-
+    
     function buildRequest(path) {
-        const url = config.get('jenkins.baseUrl') + path;
+        const url = config.get('teamcity.baseUrl') + '/httpAuth' + path;
         let req = request.get(url);
 
-        if (certificate) {
-            req = req.ca(certificate);
-        }
-
-        mozaik.logger.info(chalk.yellow(`[jenkins] fetching from ${ url }`));
+        mozaik.logger.info(chalk.yellow(`[teamcity] fetching from ${ url }`));
 
         return req
             .auth(
-                config.get('jenkins.basicAuthUser'),
-                config.get('jenkins.basicAuthPassword')
+                config.get('teamcity.basicAuthUser'),
+                config.get('teamcity.basicAuthPassword')
             )
+            .set('Accept', 'application/json')
             .promise()
             .catch(error => {
-                mozaik.logger.error(chalk.red(`[jenkins] ${ error.error }`));
+                mozaik.logger.error(chalk.red(`[teamcity] ${ error.error }`));
                 throw error;
             })
         ;
@@ -64,9 +50,9 @@ const client = mozaik => {
             ;
         },
 
-        job(params) {
-            return buildRequest(`/job/${ params.job }/api/json?pretty=true&depth=10&tree=builds[number,duration,result,builtOn,timestamp,id,building]`)
-                .then(res => res.body.builds)
+        buildtype(params) {
+            return buildRequest(`/app/rest/builds?locator=buildType:${ params.buildtypeid }&fields=build(id,buildTypeId,number,status,branchName,startDate,finishDate,queuedDate,href,running-info)`)
+                .then(res => res.body.build)
             ;
         },
 

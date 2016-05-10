@@ -1,23 +1,22 @@
 {
-  "name": "mozaik-ext-jenkins",
-  "version": "1.2.0",
-  "description": "Mozaik jenkins widgets",
+  "name": "mozaik-ext-teamcity",
+  "version": "1.0.0",
+  "description": "Mozaik TeamCity widgets",
   "repository": {
     "type": "git",
-    "url": "git://github.com/plouc/mozaik-ext-jenkins"
+    "url": "git://github.com/gazab/mozaik-ext-teamcity"
   },
   "bugs": {
-    "url": "https://github.com/plouc/mozaik-ext-jenkins/issues"
+    "url": "https://github.com/gazab/mozaik-ext-teamcity/issues"
   },
-  "homepage": "https://github.com/plouc/mozaik-ext-jenkins#readme",
+  "homepage": "https://github.com/gazab/mozaik-ext-teamcity#readme",
   "license": "MIT",
   "author": {
-    "name": "Raphaël Benitte",
-    "url": "https://github.com/plouc"
+    "name": "Gustav Tonér",
+    "url": "https://github.com/gazab"
   },
   "keywords": [
-    "jenkins",
-    "hudson",
+    "teamcity",
     "ci",
     "mozaik",
     "widget",

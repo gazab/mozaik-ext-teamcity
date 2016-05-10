@@ -6,7 +6,7 @@ import Mozaik                          from 'mozaik/browser';
 import JobStatusPreviousBuild          from './JobStatusPreviousBuild.jsx';
 
 
-class JobStatus extends Component {
+class BuildTypeStatus extends Component {
     constructor(props) {
         super(props);
 
@@ -14,11 +14,11 @@ class JobStatus extends Component {
     }
 
     getApiRequest() {
-        const { job, layout } = this.props;
+        const { buildtypeid, layout } = this.props;
 
         return {
-            id:     `jenkins.job.${job}`,
-            params: { job, layout }
+            id:     `teamcity.buildtype.${buildtypeid}`,
+            params: { buildtypeid, layout }
         };
     }
 
@@ -27,7 +27,7 @@ class JobStatus extends Component {
     }
 
     render() {
-        const { job, layout, title } = this.props;
+        const { buildtypeid, layout, title } = this.props;
         const { builds }             = this.state;
 
         let currentNode  = null;
@@ -35,16 +35,16 @@ class JobStatus extends Component {
         let statusClasses;
         let iconClasses;
 
-        const finalTitle = title || `Jenkins job ${ job }`;
+        const finalTitle = title || `TeamCity build config: ${ buildtypeid }`;
 
         if (layout === 'bold') {
             if (builds.length > 0) {
                 const currentBuild = builds[0];
-                if (currentBuild.result === 'SUCCESS') {
+                if (currentBuild.status === 'SUCCESS') {
                     iconClasses = 'fa fa-check';
                 }
 
-                statusClasses = `widget__body__colored jenkins__view__job__build__colored_status--${ currentBuild.result.toLowerCase() }`;
+                statusClasses = `widget__body__colored jenkins__view__job__build__colored_status--${ currentBuild.status.toLowerCase() }`;
 
                 currentNode = (
                     <div className="jenkins__job-status__current">
@@ -55,7 +55,7 @@ class JobStatus extends Component {
                         </span><br/>
                         <time className="jenkins__job-status__current__time">
                             <i className="fa fa-clock-o"/>&nbsp;
-                            {moment(currentBuild.timestamp, 'x').fromNow()}
+                            {moment(currentBuild.finishDate).fromNow()}
                         </time>
                     </div>
                 );
@@ -73,22 +73,22 @@ class JobStatus extends Component {
 
         if (builds.length > 0) {
             const currentBuild = builds[0];
-            if (currentBuild.result === 'SUCCESS') {
+            if (currentBuild.status === 'SUCCESS') {
                 iconClasses = 'fa fa-check';
             }
 
-            statusClasses = `jenkins__job-status__current__status jenkins__job-status__current__status--${ currentBuild.result.toLowerCase() }`;
+            statusClasses = `jenkins__job-status__current__status jenkins__job-status__current__status--${ currentBuild.status.toLowerCase() }`;
 
             currentNode = (
                 <div className="jenkins__job-status__current">
                     Build #{currentBuild.number}<br />
                     <span className={statusClasses}>
-                        {currentBuild.result}&nbsp;
+                        {currentBuild.status}&nbsp;
                         <i className={iconClasses} />
                     </span><br/>
                     <time className="jenkins__job-status__current__time">
                         <i className="fa fa-clock-o" />&nbsp;
-                        {moment(currentBuild.timestamp, 'x').fromNow()}
+                        {moment(currentBuild.finishDate).fromNow()}
                     </time>
                 </div>
             );
@@ -113,20 +113,20 @@ class JobStatus extends Component {
     }
 }
 
-JobStatus.displayName = 'JobStatus';
+BuildTypeStatus.displayName = 'BuildTypeStatus';
 
-JobStatus.propTypes = {
-    job:    PropTypes.string.isRequired,
+BuildTypeStatus.propTypes = {
+    buildtypeid:    PropTypes.string.isRequired,
     layout: PropTypes.string.isRequired,
     title:  PropTypes.string
 };
 
-JobStatus.defaultProps = {
+BuildTypeStatus.defaultProps = {
     layout: 'default'
 };
 
-reactMixin(JobStatus.prototype, ListenerMixin);
-reactMixin(JobStatus.prototype, Mozaik.Mixin.ApiConsumer);
+reactMixin(BuildTypeStatus.prototype, ListenerMixin);
+reactMixin(BuildTypeStatus.prototype, Mozaik.Mixin.ApiConsumer);
 
 
-export default JobStatus;
+export default BuildTypeStatus;

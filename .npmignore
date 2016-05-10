@@ -1,6 +1,5 @@
 test
 preview
-.travis.yml
 .eslintrc
 npm-debug.log*
 .nyc_output
