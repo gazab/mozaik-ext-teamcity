@@ -44,16 +44,16 @@ class BuildTypeStatus extends Component {
                     iconClasses = 'fa fa-check';
                 }
 
-                statusClasses = `widget__body__colored jenkins__view__job__build__colored_status--${ currentBuild.status.toLowerCase() }`;
+                statusClasses = `widget__body__colored teamcity__view__buildtype__build__colored_status--${ currentBuild.status.toLowerCase() }`;
 
                 currentNode = (
-                    <div className="jenkins__job-status__current">
+                    <div className="teamcity__buildtype-status__current">
                         Build #{currentBuild.number}<br />
-                        <span className="jenkins__job-status__current__status">
+                        <span className="teamcity__buildtype-status__current__status">
                             {finalTitle}&nbsp;
                             <i className={iconClasses}/>
                         </span><br/>
-                        <time className="jenkins__job-status__current__time">
+                        <time className="teamcity__buildtype-status__current__time">
                             <i className="fa fa-clock-o"/>&nbsp;
                             {moment(currentBuild.finishDate).fromNow()}
                         </time>
@@ -77,16 +77,16 @@ class BuildTypeStatus extends Component {
                 iconClasses = 'fa fa-check';
             }
 
-            statusClasses = `jenkins__job-status__current__status jenkins__job-status__current__status--${ currentBuild.status.toLowerCase() }`;
+            statusClasses = `teamcity__buildtype-status__current__status teamcity__buildtype-status__current__status--${ currentBuild.status.toLowerCase() }`;
 
             currentNode = (
-                <div className="jenkins__job-status__current">
+                <div className="teamcity__buildtype-status__current">
                     Build #{currentBuild.number}<br />
                     <span className={statusClasses}>
                         {currentBuild.status}&nbsp;
                         <i className={iconClasses} />
                     </span><br/>
-                    <time className="jenkins__job-status__current__time">
+                    <time className="teamcity__buildtype-status__current__time">
                         <i className="fa fa-clock-o" />&nbsp;
                         {moment(currentBuild.finishDate).fromNow()}
                     </time>
