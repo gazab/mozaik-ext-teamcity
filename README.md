@@ -36,7 +36,7 @@ key                 | env key                         | required | description  
 
 
 
-## TeamCity Job Builds
+## TeamCity Build Type Builds
 
 ![jenkins job builds](https://raw.githubusercontent.com/plouc/mozaik-ext-jenkins/master/preview/jenkins.job_builds.png)
 
@@ -44,16 +44,17 @@ key                 | env key                         | required | description  
 
 ### parameters
 
-key     | required | description
---------|----------|---------------
-`job`   | yes      | *TeamCity job identifier*
-`title` | no       | *Widget title (`TeamCity job builds` if none provided)*
+key                | required | description
+-------------------|----------|---------------
+`buildtypeid`      | yes      | *TeamCity build type identifier*                |
+`title`            | no       | *Widget title (`TeamCity job builds` if none provided)*
 
 ### usage
 
 ```javascript
 {
-  type: 'teamcity.job_builds', job: 'my-job',
+  type: 'teamcity.build_type_builds',
+  buildtypeid: 'my-build-type-id',
   columns: 1, rows: 1, x: 0, y: 0
 }
 ```

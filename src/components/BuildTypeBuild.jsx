@@ -2,33 +2,33 @@ import React, { Component, PropTypes } from 'react'; // eslint-disable-line no-u
 import moment                          from 'moment';
 
 
-class JobBuild extends Component {
+class BuildTypeBuild extends Component {
     render() {
         const { build } = this.props;
 
-        const classes = `list__item list__item--with-status list__item--with-status--${ build.result.toLowerCase() }`;
+        const classes = `list__item list__item--with-status list__item--with-status--${ build.status.toLowerCase() }`;
 
         return (
             <div className={classes}>
-                #{build.number} {build.result}&nbsp;
+                #{build.number} {build.status}&nbsp;
                 <time className="list__item__time">
                     <i className="fa fa-clock-o" />&nbsp;
-                    {moment(build.timestamp, 'x').fromNow()}
+                    {moment(build.finishDate).fromNow()}
                 </time>
             </div>
         );
     }
 }
 
-JobBuild.displayName = 'JobBuild';
+BuildTypeBuild.displayName = 'BuildTypeBuild';
 
-JobBuild.propTypes = {
+BuildTypeBuild.propTypes = {
     build: PropTypes.shape({
         number:    PropTypes.number.isRequired,
-        result:    PropTypes.string.isRequired,
-        timestamp: PropTypes.number.isRequired
+        status:    PropTypes.string.isRequired,
+        finishDate: PropTypes.string.isRequired
     }).isRequired
 };
 
 
-export default JobBuild;
+export default BuildTypeBuild;

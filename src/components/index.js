@@ -1,14 +1,14 @@
-import BuildTypeStatus          from './BuildTypeStatus.jsx';
+import BuildTypeBuilds          from './BuildTypeBuilds.jsx';
 import BuildTypeBuildsHistogram from './BuildTypeBuildsHistogram.jsx';
+import BuildTypeStatus          from './BuildTypeStatus.jsx';
 
 import Jobs               from './Jobs.jsx';
-import JobBuilds          from './JobBuilds.jsx';
 import View               from './View.jsx';
 
 export default {
-    BuildTypeStatus,
+    BuildTypeBuilds,
     BuildTypeBuildsHistogram,
+    BuildTypeStatus,
     Jobs,
-    JobBuilds,
     View
 };

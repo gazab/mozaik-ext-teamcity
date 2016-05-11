@@ -2,10 +2,10 @@ import React, { Component, PropTypes } from 'react'; // eslint-disable-line no-u
 import reactMixin                      from 'react-mixin';
 import { ListenerMixin }               from 'reflux';
 import Mozaik                          from 'mozaik/browser';
-import JobBuild                        from './JobBuild.jsx';
+import BuildTypeBuild                  from './BuildTypeBuild.jsx';
 
 
-class JobBuilds extends Component {
+class BuildTypeBuilds extends Component {
     constructor(props) {
         super(props);
 
@@ -13,11 +13,11 @@ class JobBuilds extends Component {
     }
 
     getApiRequest() {
-        const { job } = this.props;
+        const { buildtypeid } = this.props;
 
         return {
-            id:     `jenkins.job.${job}`,
-            params: { job }
+            id:     `teamcity.buildtype.${buildtypeid}`,
+            params: { buildtypeid }
         };
     }
 
@@ -36,11 +36,11 @@ class JobBuilds extends Component {
                     <span className="widget__header__count">
                         {builds.length}
                     </span>
-                    <i className="fa fa-bug" />
+                    <i className="fa fa-tasks" />
                 </div>
                 <div className="widget__body">
                     {builds.map(build => (
-                        <JobBuild key={build.number} build={build} />
+                        <BuildTypeBuild key={build.number} build={build} />
                     ))}
                 </div>
             </div>
@@ -48,19 +48,19 @@ class JobBuilds extends Component {
     }
 }
 
-JobBuilds.displayName = 'JobBuilds';
+BuildTypeBuilds.displayName = 'BuildTypeBuilds';
 
-JobBuilds.propTypes = {
+BuildTypeBuilds.propTypes = {
     title: PropTypes.string.isRequired,
-    job:   PropTypes.string.isRequired
+    buildtypeid:   PropTypes.string.isRequired
 };
 
-JobBuilds.defaultProps = {
-    title: 'Jenkins job builds'
+BuildTypeBuilds.defaultProps = {
+    title: 'TeamCity build type builds'
 };
 
-reactMixin(JobBuilds.prototype, ListenerMixin);
-reactMixin(JobBuilds.prototype, Mozaik.Mixin.ApiConsumer);
+reactMixin(BuildTypeBuilds.prototype, ListenerMixin);
+reactMixin(BuildTypeBuilds.prototype, Mozaik.Mixin.ApiConsumer);
 
 
-export default JobBuilds;
+export default BuildTypeBuilds;
