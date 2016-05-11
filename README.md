@@ -93,16 +93,17 @@ key   | required | description
 
 ### parameters
 
-key      | required |description                                   | notes
----------|----------|----------------------------------------------|-----------------------------------------
-`job`    | yes      | *TeamCity job identifier*                     |
-`layout` | no       | *widget layout* (none for default or 'bold') | 
+key            | required |description                                      | notes
+---------------|----------|-------------------------------------------------|-----------------------------------------
+`buildtypeid`  | yes      | *TeamCity build type identifier*                |     |
+`layout`       | no       | *widget layout* (none for default or 'bold')    | 
+`title`        | no       | *widget title (view name used if none provided)*|
 
 ### usage
 
 ```javascript
 {
-  type: 'teamcity.job_status', job: 'my-job',
+  type: 'teamcity.build_type_status', buildtypeid: 'my-buildtype-id',
   columns: 1, rows: 1, x: 0, y: 0
 }
 ```
