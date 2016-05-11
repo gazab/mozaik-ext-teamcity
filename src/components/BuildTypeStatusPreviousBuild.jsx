@@ -2,29 +2,29 @@ import React, { Component, PropTypes } from 'react'; // eslint-disable-line no-u
 import moment                          from 'moment';
 
 
-class JobStatusPreviousBuild extends Component {
+class BuildTypeStatusPreviousBuild extends Component {
     render() {
         const { build } = this.props;
 
         return (
-            <div className="jenkins__job-status__previous">
+            <div className="teamcity__buildtype-status__previous">
                 previous status (#{build.number}) were&nbsp;
-                {build.result}&nbsp;
-                {moment(build.timestamp, 'x').fromNow()}
+                {build.status}&nbsp;
+                {moment(build.finishDate).fromNow()}
             </div>
         );
     }
 }
 
-JobStatusPreviousBuild.displayName = 'JobStatusPreviousBuild';
+BuildTypeStatusPreviousBuild.displayName = 'BuildTypeStatusPreviousBuild';
 
-JobStatusPreviousBuild.propTypes = {
+BuildTypeStatusPreviousBuild.propTypes = {
     build: PropTypes.shape({
         number:    PropTypes.number.isRequired,
         result:    PropTypes.string.isRequired,
-        timestamp: PropTypes.number.isRequired
+        finishDate: PropTypes.number.isRequired
     }).isRequired
 };
 
 
-export default JobStatusPreviousBuild;
+export default BuildTypeStatusPreviousBuild;

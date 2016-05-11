@@ -3,7 +3,7 @@ import moment                          from 'moment';
 import reactMixin                      from 'react-mixin';
 import { ListenerMixin }               from 'reflux';
 import Mozaik                          from 'mozaik/browser';
-import JobStatusPreviousBuild          from './JobStatusPreviousBuild.jsx';
+import BuildTypeStatusPreviousBuild          from './BuildTypeStatusPreviousBuild.jsx';
 
 
 class BuildTypeStatus extends Component {
@@ -94,7 +94,7 @@ class BuildTypeStatus extends Component {
             );
 
             if (builds.length > 1) {
-                previousNode = <JobStatusPreviousBuild build={builds[1]} />;
+                previousNode = <BuildTypeStatusPreviousBuild build={builds[1]} />;
             }
         }
 
