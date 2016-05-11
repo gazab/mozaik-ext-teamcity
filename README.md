@@ -68,16 +68,19 @@ key     | required | description
 
 ### parameters
 
-key   | required | description
-------|----------|---------------
-`job` | yes      | *TeamCity job identifier*
+key            | required | description
+---------------|----------|-------------------------------------------------|
+`buildtypeid`  | yes      | *TeamCity build type identifier*                |
+`title`        | no       | *widget title (view name used if none provided)*|
+`cap`          | no       | *number of builds to show*                      |
 
 ### usage
 
 ```javascript
 {
-  type: 'teamcity.job_builds_histogram', job: 'my-job',
-  columns: 1, rows: 1, x: 0, y: 0
+  type: 'teamcity.build_type_builds_histogram',
+  buildtypeid: 'my-buildtype-id',
+  columns: 2, rows: 1, x: 0, y: 0
 }
 ```
 
