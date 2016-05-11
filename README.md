@@ -40,7 +40,7 @@ key                 | env key                         | required | description  
 
 ![jenkins job builds](https://raw.githubusercontent.com/plouc/mozaik-ext-jenkins/master/preview/jenkins.job_builds.png)
 
-> Show TeamCity job builds.
+> Show TeamCity build type builds.
 
 ### parameters
 
@@ -83,13 +83,13 @@ key   | required | description
 
 
 
-## Jenkins Job Status
+## TeamCity Build Type Status
 
 ![TeamCity job status](https://raw.githubusercontent.com/plouc/mozaik-ext-jenkins/master/preview/jenkins.job_status.png)
 
 ![TeamCity job status bold](https://raw.githubusercontent.com/plouc/mozaik-ext-jenkins/master/preview/jenkins.job_status_bold.png)
 
-> Display job current build status.
+> Display build type current build status.
 
 ### parameters
 
