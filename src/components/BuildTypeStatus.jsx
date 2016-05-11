@@ -102,7 +102,7 @@ class BuildTypeStatus extends Component {
             <div>
                 <div className="widget__header">
                     {finalTitle}
-                    <i className="fa fa-bug" />
+                    <i className="fa fa-tasks" />
                 </div>
                 <div className="widget__body">
                     {currentNode}

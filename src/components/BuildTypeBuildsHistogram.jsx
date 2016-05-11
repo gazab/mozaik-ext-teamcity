@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'react'; // eslint-disable-line no-unused-vars
 import reactMixin                      from 'react-mixin';
+import moment                          from 'moment';
 import { ListenerMixin }               from 'reflux';
 import Mozaik                          from 'mozaik/browser';
 const { BarChart }                     = Mozaik.Component;
 
 
-class JobBuildsHistogram extends Component {
+class BuildTypeBuildsHistogram extends Component {
     constructor(props) {
         super(props);
 
@@ -13,11 +14,11 @@ class JobBuildsHistogram extends Component {
     }
 
     getApiRequest() {
-        const { job } = this.props;
+        const { buildtypeid } = this.props;
 
         return {
-            id:     `jenkins.job.${ job }`,
-            params: { job }
+            id:     `teamcity.buildtype.${buildtypeid}`,
+            params: { buildtypeid }
         };
     }
 
@@ -28,14 +29,14 @@ class JobBuildsHistogram extends Component {
     }
 
     render() {
-        const { job }    = this.props;
+        const { buildtypeid }    = this.props;
         const { builds } = this.state;
 
         // converts to format required by BarChart component
         const data = builds.map(build => ({
-            x:      build.number,
-            y:      build.duration / 1000 / 60, // converts ms to mn
-            result: build.result ? build.result.toLowerCase() : 'unkown'
+            x:      build.id,
+            y:      moment.duration(moment(build.finishDate).diff(moment(build.startDate))) / 1000 / 60, // calculate build duration
+            result: build.status ? build.status.toLowerCase() : 'unknown'
         }));
 
         const barChartOptions = {
@@ -51,8 +52,8 @@ class JobBuildsHistogram extends Component {
         return (
             <div>
                 <div className="widget__header">
-                    Jenkins <span className="widget__header__subject">{job}</span> builds
-                    <i className="fa fa-bug"/>
+                    TeamCity <span className="widget__header__subject">{buildtypeid}</span> builds
+                    <i className="fa fa-tasks"/>
                 </div>
                 <div className="widget__body">
                     <BarChart data={[{ data: data }]} options={barChartOptions}/>
@@ -62,18 +63,18 @@ class JobBuildsHistogram extends Component {
     }
 }
 
-JobBuildsHistogram.displayName = 'JobBuildsHistogram';
+BuildTypeBuildsHistogram.displayName = 'BuildTypeBuildsHistogram';
 
-JobBuildsHistogram.propTypes = {
-    job: PropTypes.string.isRequired,
+BuildTypeBuildsHistogram.propTypes = {
+    buildtypeid: PropTypes.string.isRequired,
     cap: PropTypes.number.isRequired
 };
 
-JobBuildsHistogram.defaultProps = {
+BuildTypeBuildsHistogram.defaultProps = {
     cap: 50
 };
 
-reactMixin(JobBuildsHistogram.prototype, ListenerMixin);
-reactMixin(JobBuildsHistogram.prototype, Mozaik.Mixin.ApiConsumer);
+reactMixin(BuildTypeBuildsHistogram.prototype, ListenerMixin);
+reactMixin(BuildTypeBuildsHistogram.prototype, Mozaik.Mixin.ApiConsumer);
 
-export { JobBuildsHistogram as default };
+export { BuildTypeBuildsHistogram as default };
