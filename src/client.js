@@ -6,10 +6,10 @@ import fs      from 'fs';
 require('superagent-bluebird-promise');
 
 
-const viewBuildTypes = [
+const projectBuildStatusTypes = [
     'lastBuild',
-    'lastFailedBuild',
-    'lastSuccessfulBuild'
+    'failure',
+    'success'
 ];
 
 
@@ -44,49 +44,45 @@ const client = mozaik => {
     }
 
     const apiMethods = {
-        jobs() {
-            return buildRequest('/api/json?tree=jobs[name,lastBuild[number,building,timestamp,result]]&pretty=true')
-                .then(res => res.body.jobs)
-            ;
-        },
-
         buildtype(params) {
-            return buildRequest(`/app/rest/builds?locator=buildType:${ params.buildtypeid }&fields=build(id,buildTypeId,number,status,branchName,startDate,finishDate,queuedDate,href,running-info)`)
+            return buildRequest(`/app/rest/builds?locator=buildType:${ params.buildtypeid }&fields=build(id,buildTypeId,number,status,branchName,startDate,finishDate,queuedDate,href,statusText)`)
                 .then(res => res.body.build)
             ;
         },
 
-        jobBuild(params) {
-            return buildRequest(`/job/${ params.job }/${ params.buildNumber }/api/json?pretty=true`)
+        buildtypebuild(params) {
+            var statusFilter = ""
+            if(params.statustype != "lastBuild")
+                statusFilter = ",status:" + params.statustype;
+            
+            return buildRequest(`/app/rest/builds?locator=buildType:${ params.buildtypeid }${ statusFilter }&fields=build(id,buildTypeId,number,status,branchName,startDate,finishDate,queuedDate,href,statusText)`)
                 .then(res => res.body)
             ;
         },
 
-        view(params) {
-            return buildRequest(`/view/${ params.view }/api/json?pretty=true&depth=1`)
+        project(params) {
+            return buildRequest(`/app/rest/projects/id:${ params.projectid }`)
                 .then(res => {
-                    const view   = res.body;
+                    const project = res.body;
                     const builds = [];
-
+                    
                     // Fetch builds details
-                    view.jobs.forEach(job => {
-                        viewBuildTypes.forEach(buildType => {
-                            if (job[buildType]) {
-                                builds.push(
-                                    apiMethods.jobBuild({
-                                        job:         job.name,
-                                        buildNumber: job[buildType].number
-                                    })
-                                    .then(build => {
-                                        job[buildType] = build;
-                                    })
-                                );
-                            }
+                    project.buildTypes.buildType.forEach(buildType => {
+                        projectBuildStatusTypes.forEach(statusType => {
+                            builds.push(
+                                apiMethods.buildtypebuild({
+                                    buildtypeid: buildType.id,
+                                    statustype: statusType
+                                })
+                                .then(build => {
+                                    buildType[statusType] = build;
+                                })
+                            );
                         });
                     });
 
                     return Promise.all(builds)
-                        .then(() => view)
+                        .then(() => project)
                     ;
                 })
             ;

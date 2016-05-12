@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react'; // eslint-disable-line no-unused-vars
 
 
-class ViewJobBuildStatus extends Component {
+class ProjectBuildTypeBuildStatus extends Component {
     render() {
         if (!this.props.build) {
             return (
                 <td className="table__cell">
-                    <span className="jenkins__view__job__build__status jenkins__view__job__build__status--unknown">
+                    <span className="teamcity__project__buildtype__build__status teamcity__project__buildtype__build__status--unknown">
                         <i className="fa fa-question-circle" />
                     </span>
                 </td>
@@ -16,7 +16,7 @@ class ViewJobBuildStatus extends Component {
         const { build } = this.props;
 
         let iconClasses = 'fa fa-';
-        switch (build.result) {
+        switch (build.status) {
             case 'SUCCESS':
                 iconClasses += 'check-circle';
                 break;
@@ -30,9 +30,9 @@ class ViewJobBuildStatus extends Component {
                 break;
         }
 
-        let statusClasses = 'jenkins__view__job__build__status ';
-        if (build.result) {
-            statusClasses += `jenkins__view__job__build__status--${build.result.toLowerCase()}`;
+        let statusClasses = 'teamcity__project__buildtype__build__status ';
+        if (build.status) {
+            statusClasses += `teamcity__project__buildtype__build__status--${build.status.toLowerCase()}`;
         }
 
         return (
@@ -45,11 +45,11 @@ class ViewJobBuildStatus extends Component {
     }
 }
 
-ViewJobBuildStatus.displayName = 'ViewJobBuildStatus';
+ProjectBuildTypeBuildStatus.displayName = 'ProjectBuildTypeBuildStatus';
 
-ViewJobBuildStatus.propTypes = {
+ProjectBuildTypeBuildStatus.propTypes = {
     build: PropTypes.object
 };
 
 
-export default ViewJobBuildStatus;
+export default ProjectBuildTypeBuildStatus;

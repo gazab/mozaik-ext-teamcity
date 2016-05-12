@@ -3,7 +3,7 @@ import moment                          from 'moment';
 require('moment-duration-format');
 
 
-class ViewJobBuildDuration extends Component {
+class ProjectBuildTypeBuildDuration extends Component {
     render() {
         if (!this.props.build) {
             return <td className="table__cell">n/a</td>;
@@ -13,17 +13,17 @@ class ViewJobBuildDuration extends Component {
 
         return (
             <td className="table__cell">
-                {moment.duration(build.duration, 'ms').format('m [mn] s [s]')}
+                {moment.duration(moment(build.finishDate).diff(moment(build.startDate)), 'ms').format('m [mn] s [s]')}
             </td>
         );
     }
 }
 
-ViewJobBuildDuration.displayName = 'ViewJobBuildDuration';
+ProjectBuildTypeBuildDuration.displayName = 'ProjectBuildTypeBuildDuration';
 
-ViewJobBuildDuration.propTypes = {
+ProjectBuildTypeBuildDuration.propTypes = {
     build: PropTypes.object
 };
 
 
-export default ViewJobBuildDuration;
+export default ProjectBuildTypeBuildDuration;

@@ -44,7 +44,7 @@ class BuildTypeStatus extends Component {
                     iconClasses = 'fa fa-check';
                 }
 
-                statusClasses = `widget__body__colored teamcity__view__buildtype__build__colored_status--${ currentBuild.status.toLowerCase() }`;
+                statusClasses = `widget__body__colored teamcity__project__buildtype__build__colored_status--${ currentBuild.status.toLowerCase() }`;
 
                 currentNode = (
                     <div className="teamcity__buildtype-status__current">

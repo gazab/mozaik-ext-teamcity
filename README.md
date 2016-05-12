@@ -13,8 +13,8 @@ In order to use the Mozaïk TeamCity widgets, you must configure its **client**.
 
 ### parameters
 
-key                 | env key                         | required | description             | notes
---------------------|---------------------------------|----------|-------------------------|-----------------------------------------------
+key                 | env key                          | required | description              | notes
+--------------------|----------------------------------|----------|--------------------------|-----------------------------------------------
 `baseUrl`           | TEAMCITY_API_BASE_URL            | yes      | *TeamCity base url*      |
 `basicAuthUser`     | TEAMCITY_API_BASIC_AUTH_USER     | yes      | *TeamCity auth user*     |
 `basicAuthPassword` | TEAMCITY_API_BASIC_AUTH_PASSWORD | yes      | *TeamCity auth password* |
@@ -65,7 +65,7 @@ key                | required | description
 
 ![TeamCity job builds histogram](https://raw.githubusercontent.com/plouc/mozaik-ext-jenkins/master/preview/jenkins.job_builds_histogram.png)
 
-> Show TeamCity job builds histogram.
+> Show TeamCity build type builds histogram.
 
 ### parameters
 
@@ -114,24 +114,25 @@ key            | required |description                                      | no
 
 
 
-## TeamCity View
+## TeamCity Project
 
-![TeamCity view](https://raw.githubusercontent.com/plouc/mozaik-ext-jenkins/master/preview/jenkins.view.png)
+![TeamCity project](https://raw.githubusercontent.com/plouc/mozaik-ext-jenkins/master/preview/jenkins.view.png)
 
-> List view jobs
+> List project build types
 
 ### parameters
 
-key     | required | description
---------|----------|---------------
-`view`  | yes      | *TeamCity view identifier*
-`title` | no       | *widget title (view name used if none provided)*
+key          | required | description
+-------------|----------|---------------
+`projectid`  | yes      | *TeamCity project identifier*
+`title`      | no       | *widget title (view name used if none provided)*
 
 ### usage
 
 ```javascript
 {
-    type: 'teamcity.view', view: 'dev-env',
+    type: 'teamcity.project',
+    projectid: 'my-project-id',
     columns: 2, rows: 1, x: 0, y: 0
 }
 ```
