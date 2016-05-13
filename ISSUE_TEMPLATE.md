@@ -3,7 +3,7 @@ item                           | info       | notes
 **node** version               |            | *output from `node --version`*
 **npm** version                |            | *output from `npm --version`*
 **mozaik-ext-teamcity** version|            | *available in project's `package.json`*
-**jenkins** version            |            | *your jenkins server version*
+**teamcity** version            |            | *your jenkins server version*
 **mozaik** version             |            | *available in project's `package.json`*
 **mozaik-demo** version        |            | *version of the demo used, depends on which method you used to setup your Mozaïk dashboard*
 **component**                  |            | *name of the extension's component or `client` if it's related to the extension's client*
