@@ -1,4 +1,8 @@
+For portions of project mozaik-ext-teamcity as part of mozaik-ext-jenkins:
 Copyright (c) 2015-2016 Raphaël Benitte
+
+For all other copyright for project mozaik-ext-teamcity:
+Copyright (c) 2016 Gustav Tonér
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

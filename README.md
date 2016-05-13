@@ -1,5 +1,7 @@
 # Mozaïk TeamCity widgets
 
+Based on https://github.com/plouc/mozaik-ext-jenkins
+
 [![License][license-image]][license-url]
 [![NPM version][npm-image]][npm-url]
 ![widget count][widget-count-image]
