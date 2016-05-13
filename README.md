@@ -1,10 +1,7 @@
 # Mozaïk TeamCity widgets
 
 [![License][license-image]][license-url]
-[![Travis CI][travis-image]][travis-url]
 [![NPM version][npm-image]][npm-url]
-[![Dependencies][gemnasium-image]][gemnasium-url]
-[![Coverage Status][coverage-image]][coverage-url]
 ![widget count][widget-count-image]
 
 ## TeamCity Client Configuration
@@ -38,7 +35,7 @@ key                 | env key                          | required | description 
 
 ## TeamCity Build Type Builds
 
-![jenkins job builds](https://raw.githubusercontent.com/plouc/mozaik-ext-jenkins/master/preview/jenkins.job_builds.png)
+![TeamCity build type builds](https://raw.githubusercontent.com/gazab/mozaik-ext-teamcity/master/preview/teamcity.build_type_builds.png)
 
 > Show TeamCity build type builds.
 
@@ -47,7 +44,7 @@ key                 | env key                          | required | description 
 key                | required | description
 -------------------|----------|---------------
 `buildtypeid`      | yes      | *TeamCity build type identifier*                |
-`title`            | no       | *Widget title (`TeamCity job builds` if none provided)*
+`title`            | no       | *Widget title (`TeamCity build type builds` if none provided)*
 
 ### usage
 
@@ -61,9 +58,9 @@ key                | required | description
 
 
 
-## TeamCity Job Builds Histogram
+## TeamCity Build Type Builds Histogram
 
-![TeamCity job builds histogram](https://raw.githubusercontent.com/plouc/mozaik-ext-jenkins/master/preview/jenkins.job_builds_histogram.png)
+![TeamCity build type builds histogram](https://raw.githubusercontent.com/gazab/mozaik-ext-teamcity/master/preview/teamcity.build_type_builds_histogram.png)
 
 > Show TeamCity build type builds histogram.
 
@@ -89,9 +86,9 @@ key            | required | description
 
 ## TeamCity Build Type Status
 
-![TeamCity job status](https://raw.githubusercontent.com/plouc/mozaik-ext-jenkins/master/preview/jenkins.job_status.png)
+![TeamCity build type status](https://raw.githubusercontent.com/gazab/mozaik-ext-teamcity/master/preview/teamcity.build_type_status.png)
 
-![TeamCity job status bold](https://raw.githubusercontent.com/plouc/mozaik-ext-jenkins/master/preview/jenkins.job_status_bold.png)
+![TeamCity build type status bold](https://raw.githubusercontent.com/gazab/mozaik-ext-teamcity/master/preview/teamcity.build_type_status_bold.png)
 
 > Display build type current build status.
 
@@ -116,7 +113,7 @@ key            | required |description                                      | no
 
 ## TeamCity Project
 
-![TeamCity project](https://raw.githubusercontent.com/plouc/mozaik-ext-jenkins/master/preview/jenkins.view.png)
+![TeamCity project](https://raw.githubusercontent.com/gazab/mozaik-ext-teamcity/master/preview/teamcity.project.png)
 
 > List project build types
 
@@ -138,14 +135,8 @@ key          | required | description
 ```
 
 
-[license-image]: https://img.shields.io/github/license/plouc/mozaik-ext-jenkins.svg?style=flat-square
-[license-url]: https://github.com/plouc/mozaik-ext-jenkins/blob/master/LICENSE.md
-[travis-image]: https://img.shields.io/travis/plouc/mozaik-ext-jenkins.svg?style=flat-square
-[travis-url]: https://travis-ci.org/plouc/mozaik-ext-jenkins
-[npm-image]: https://img.shields.io/npm/v/mozaik-ext-jenkins.svg?style=flat-square
-[npm-url]: https://www.npmjs.com/package/mozaik-ext-jenkins
-[gemnasium-image]: https://img.shields.io/gemnasium/plouc/mozaik-ext-jenkins.svg?style=flat-square
-[gemnasium-url]: https://gemnasium.com/plouc/mozaik-ext-jenkins
-[coverage-image]: https://img.shields.io/coveralls/plouc/mozaik-ext-jenkins.svg?style=flat-square
-[coverage-url]: https://coveralls.io/github/plouc/mozaik-ext-jenkins
+[license-image]: https://img.shields.io/github/license/gazab/mozaik-ext-teamcity.svg?style=flat-square
+[license-url]: https://github.com/gazab/mozaik-ext-teamcity/blob/master/LICENSE.md
+[npm-image]: https://img.shields.io/npm/v/mozaik-ext-teamcity.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/mozaik-ext-teamcity
 [widget-count-image]: https://img.shields.io/badge/widgets-x4-green.svg?style=flat-square
