@@ -1,6 +1,6 @@
 {
   "name": "mozaik-ext-teamcity",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Mozaik TeamCity widgets",
   "repository": {
     "type": "git",
