@@ -8,7 +8,7 @@ class BuildTypeStatusPreviousBuild extends Component {
 
         return (
             <div className="teamcity__buildtype-status__previous">
-                previous status (#{build.number}) were&nbsp;
+                previous status (#{build.number}) was&nbsp;
                 {build.status}&nbsp;
                 {moment(build.finishDate).fromNow()}
             </div>
