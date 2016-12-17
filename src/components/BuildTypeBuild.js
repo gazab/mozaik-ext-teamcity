@@ -20,8 +20,6 @@ class BuildTypeBuild extends Component {
     }
 }
 
-BuildTypeBuild.displayName = 'BuildTypeBuild';
-
 BuildTypeBuild.propTypes = {
     build: PropTypes.shape({
         number:    PropTypes.number.isRequired,

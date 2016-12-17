@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react'; // eslint-disable-line no-unused-vars
+import React, { Component, PropTypes } from 'react';
 import BuildTypeBuild                  from './BuildTypeBuild';
 
 class BuildTypeBuilds extends Component {
+    
     static getApiRequest({buildtypeid}) {
-        
         return {
             id:     `teamcity.buildtype.${buildtypeid}`,
             params: { buildtypeid }
@@ -31,8 +31,6 @@ class BuildTypeBuilds extends Component {
         );
     }
 }
-
-BuildTypeBuilds.displayName = 'BuildTypeBuilds';
 
 BuildTypeBuilds.propTypes = {
     title: PropTypes.string.isRequired,
