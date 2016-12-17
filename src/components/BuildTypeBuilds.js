@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'; // eslint-disable-line no-u
 import BuildTypeBuild                  from './BuildTypeBuild';
 
 class BuildTypeBuilds extends Component {
-    static getApiRequest({buildtypid}) {
+    static getApiRequest({buildtypeid}) {
         
         return {
             id:     `teamcity.buildtype.${buildtypeid}`,
