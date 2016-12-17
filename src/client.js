@@ -1,4 +1,4 @@
-const request = require('superagent');
+const request = require('superagent-bluebird-promise');
 const config = require('./config');
 const Promise = require('bluebird');
 const chalk = require('chalk');
