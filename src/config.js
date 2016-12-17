@@ -1,4 +1,4 @@
-import convict from 'convict';
+const convict = require('convict');
 
 const config = convict({
     teamcity: {
@@ -24,4 +24,4 @@ const config = convict({
 });
 
 
-export default config;
+module.exports = config;

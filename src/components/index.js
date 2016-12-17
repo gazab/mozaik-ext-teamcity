@@ -1,7 +1,7 @@
-import BuildTypeBuilds          from './BuildTypeBuilds.jsx';
-import BuildTypeBuildsHistogram from './BuildTypeBuildsHistogram.jsx';
-import BuildTypeStatus          from './BuildTypeStatus.jsx';
-import Project                  from './Project.jsx';
+import BuildTypeBuilds          from './BuildTypeBuilds';
+import BuildTypeBuildsHistogram from './BuildTypeBuildsHistogram';
+import BuildTypeStatus          from './BuildTypeStatus';
+import Project                  from './Project';
 
 export default {
     BuildTypeBuilds,

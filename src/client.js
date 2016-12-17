@@ -1,8 +1,8 @@
-import request from 'superagent';
-import config  from './config';
-import Promise from 'bluebird';
-import chalk   from 'chalk';
-import fs      from 'fs';
+const request = require('superagent');
+const config = require('./config');
+const Promise = require('bluebird');
+const chalk = require('chalk');
+const fs = require('fs');
 require('superagent-bluebird-promise');
 
 
@@ -93,4 +93,4 @@ const client = mozaik => {
 };
 
 
-export default client;
+module.exports = client;

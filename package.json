@@ -1,6 +1,6 @@
 {
   "name": "mozaik-ext-teamcity",
-  "version": "1.0.0",
+  "version": "2.0.0-alpha.1",
   "description": "Mozaik TeamCity widgets",
   "repository": {
     "type": "git",
@@ -24,7 +24,7 @@
     "dashboard"
   ],
   "engines": {
-    "node": "0.12.x",
+    "node": ">=6.0.0",
     "npm": ">=3.0.0"
   },
   "main": "./src/components/index.js",
@@ -58,8 +58,8 @@
     "react": "^0.13.3"
   },
   "peerDependencies": {
-    "mozaik": ">=1.1.0",
-    "react": "^0.13.3"
+    "mozaik": ">=2.0.0-alpha",
+    "react": ">=15.0.0"
   },
   "scripts": {
     "eslint": "eslint --ext .js --ext .jsx ./src/** ./test/**",
@@ -67,11 +67,6 @@
     "test-cover": "nyc ava",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "cover-report": "nyc report --reporter=lcov && open coverage/lcov-report/index.html"
-  },
-  "browserify": {
-    "transform": [
-      "babelify"
-    ]
   },
   "ava": {
     "files": [
