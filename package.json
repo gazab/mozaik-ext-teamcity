@@ -1,6 +1,6 @@
 {
   "name": "mozaik-ext-teamcity",
-  "version": "2.0.0-alpha.1",
+  "version": "2.0.0-alpha.0",
   "description": "Mozaik TeamCity widgets",
   "repository": {
     "type": "git",
@@ -78,8 +78,11 @@
     "babel": "inherit"
   },
   "nyc": {
-    "extension": [
-      ".jsx"
-    ]
-  }
+   "all": true,
+   "include": [
+     "src"
+   ],
+   "sourceMap": false,
+   "instrument": false
+ }
 }
