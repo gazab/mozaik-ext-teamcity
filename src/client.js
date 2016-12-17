@@ -2,9 +2,6 @@ const request = require('superagent');
 const config = require('./config');
 const Promise = require('bluebird');
 const chalk = require('chalk');
-const fs = require('fs');
-require('superagent-bluebird-promise');
-
 
 const projectBuildStatusTypes = [
     'lastBuild',
