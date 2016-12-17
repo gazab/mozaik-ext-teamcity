@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'; // eslint-disable-line no-unused-vars
-import ProjectBuildType                         from './ProjectBuildType.jsx';
+import ProjectBuildType                         from './ProjectBuildType';
 
 class ProjectBuildTypes extends Component {
     render() {

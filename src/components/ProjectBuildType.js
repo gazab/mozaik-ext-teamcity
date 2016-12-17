@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'; // eslint-disable-line no-unused-vars
-import ProjectBuildTypeBuildStatus     from './ProjectBuildTypeBuildStatus.jsx';
-import ProjectBuildTypeHealthReport    from './ProjectBuildTypeHealthReport.jsx';
-import ProjectBuildTypeBuildTime       from './ProjectBuildTypeBuildTime.jsx';
-import ProjectBuildTypeBuildDuration   from './ProjectBuildTypeBuildDuration.jsx';
+import ProjectBuildTypeBuildStatus     from './ProjectBuildTypeBuildStatus';
+import ProjectBuildTypeHealthReport    from './ProjectBuildTypeHealthReport';
+import ProjectBuildTypeBuildTime       from './ProjectBuildTypeBuildTime';
+import ProjectBuildTypeBuildDuration   from './ProjectBuildTypeBuildDuration';
 
 
 class ProjectBuildType extends Component {
