@@ -1,33 +1,17 @@
 import React, { Component, PropTypes } from 'react'; // eslint-disable-line no-unused-vars
-import reactMixin                      from 'react-mixin';
-import { ListenerMixin }               from 'reflux';
-import Mozaik                          from 'mozaik/browser';
-import BuildTypeBuild                  from './BuildTypeBuild.jsx';
-
+import BuildTypeBuild                  from './BuildTypeBuild';
 
 class BuildTypeBuilds extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = { builds: [] };
-    }
-
-    getApiRequest() {
-        const { buildtypeid } = this.props;
-
+    static getApiRequest({buildtypid}) {
+        
         return {
             id:     `teamcity.buildtype.${buildtypeid}`,
             params: { buildtypeid }
         };
     }
 
-    onApiData(builds) {
-        this.setState({ builds });
-    }
-
     render() {
-        const { builds } = this.state;
-        const { title }  = this.props;
+        const { title, apiData: builds }  = this.props;
 
         return (
             <div>
@@ -52,15 +36,13 @@ BuildTypeBuilds.displayName = 'BuildTypeBuilds';
 
 BuildTypeBuilds.propTypes = {
     title: PropTypes.string.isRequired,
-    buildtypeid:   PropTypes.string.isRequired
+    buildtypeid:   PropTypes.string.isRequired,
+    apiData: PropTypes.array,
 };
 
 BuildTypeBuilds.defaultProps = {
-    title: 'TeamCity build type builds'
+    title: 'TeamCity build type builds',
+    apiData: [],
 };
-
-reactMixin(BuildTypeBuilds.prototype, ListenerMixin);
-reactMixin(BuildTypeBuilds.prototype, Mozaik.Mixin.ApiConsumer);
-
 
 export default BuildTypeBuilds;
