@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react' // eslint-disable-line no-unused-vars
-import Mozaik                          from 'mozaik/ui'
 import ProjectBuildTypes               from './ProjectBuildTypes'
 
 class Project extends Component {
