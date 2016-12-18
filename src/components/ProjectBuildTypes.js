@@ -25,8 +25,6 @@ class ProjectBuildTypes extends Component {
     }
 }
 
-ProjectBuildTypes.displayName = 'ProjectBuildTypes';
-
 ProjectBuildTypes.propTypes = {
     buildtypes: PropTypes.array.isRequired
 };

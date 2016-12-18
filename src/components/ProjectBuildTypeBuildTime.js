@@ -18,11 +18,8 @@ class ProjectBuildTypeBuildTime extends Component {
     }
 }
 
-ProjectBuildTypeBuildTime.displayName = 'ProjectBuildTypeBuildTime';
-
 ProjectBuildTypeBuildTime.propTypes = {
     build: PropTypes.object
 };
-
 
 export default ProjectBuildTypeBuildTime;

@@ -45,8 +45,6 @@ class ProjectBuildTypeBuildStatus extends Component {
     }
 }
 
-ProjectBuildTypeBuildStatus.displayName = 'ProjectBuildTypeBuildStatus';
-
 ProjectBuildTypeBuildStatus.propTypes = {
     build: PropTypes.object
 };

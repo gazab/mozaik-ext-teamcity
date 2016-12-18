@@ -9,8 +9,6 @@ class ProjectBuildType extends Component {
     render() {
         const { buildtype } = this.props;
 
-        console.log(this.props.buildtype);
-
         return (
             <tr className="table__row">
                 <ProjectBuildTypeBuildStatus build={buildtype.lastBuild.build[0]} />
@@ -24,11 +22,8 @@ class ProjectBuildType extends Component {
     }
 }
 
-ProjectBuildType.displayName = 'ProjectBuildType';
-
 ProjectBuildType.propTypes = {
     buildtype: PropTypes.object.isRequired
 };
-
 
 export default ProjectBuildType;

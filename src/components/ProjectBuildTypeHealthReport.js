@@ -27,8 +27,6 @@ class ProjectBuildTypeHealthReport extends Component {
     }
 }
 
-ProjectBuildTypeHealthReport.displayName = 'ProjectBuildTypeHealthReport';
-
 ProjectBuildTypeHealthReport.propTypes = {
     buildtype: PropTypes.object.isRequired,
     cap: PropTypes.number.isRequired

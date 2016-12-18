@@ -19,8 +19,6 @@ class ProjectBuildTypeBuildDuration extends Component {
     }
 }
 
-ProjectBuildTypeBuildDuration.displayName = 'ProjectBuildTypeBuildDuration';
-
 ProjectBuildTypeBuildDuration.propTypes = {
     build: PropTypes.object
 };
