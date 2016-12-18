@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'; // eslint-disable-line no-unused-vars
+import Mozaik                          from 'mozaik/ui'
 import ProjectBuildTypes               from './ProjectBuildTypes';
-
 
 class Project extends Component {
     
@@ -13,8 +13,6 @@ class Project extends Component {
 
     render() {
         const {title, apiData: project } = this.props;
-
-        console.log(project);
 
         let titleNode = (
             <span>
