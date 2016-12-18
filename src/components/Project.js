@@ -1,6 +1,6 @@
-import React, { Component, PropTypes } from 'react'; // eslint-disable-line no-unused-vars
+import React, { Component, PropTypes } from 'react' // eslint-disable-line no-unused-vars
 import Mozaik                          from 'mozaik/ui'
-import ProjectBuildTypes               from './ProjectBuildTypes';
+import ProjectBuildTypes               from './ProjectBuildTypes'
 
 class Project extends Component {
     
@@ -8,24 +8,24 @@ class Project extends Component {
         return {
             id:     `teamcity.project.${projectid}`,
             params: { projectid }
-        };
+        }
     }
 
     render() {
-        const {title, apiData: project } = this.props;
+        const {title, projectid, apiData: project } = this.props
 
         let titleNode = (
             <span>
-                TeamCity <span className="widget__header__subject">{this.props.projectid}</span> project
+                TeamCity <span className="widget__header__subject">{projectid}</span> project
             </span>
-        );
+        )
         if (title) {
-            titleNode = this.props.title;
+            titleNode = this.props.title
         }
 
-        let buildtypesNode = null;
+        let buildtypesNode = null
         if (project) {
-            buildtypesNode = <ProjectBuildTypes buildtypes={project.buildTypes.buildType} />;
+            buildtypesNode = <ProjectBuildTypes buildtypes={project.buildTypes.buildType} />
         }
 
         return (
@@ -38,13 +38,14 @@ class Project extends Component {
                     {buildtypesNode}
                 </div>
             </div>
-        );
+        )
     }
 }
 
 Project.propTypes = {
+    projectid: PropTypes.string.isRequired,
     title: PropTypes.string,
     apiData: PropTypes.object
-};
+}
 
-export default Project;
+export default Project

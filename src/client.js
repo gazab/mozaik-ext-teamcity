@@ -1,13 +1,13 @@
-const request = require('superagent-bluebird-promise');
-const config = require('./config');
-const Promise = require('bluebird');
-const chalk = require('chalk');
+const request = require('superagent-bluebird-promise')
+const config = require('./config')
+const Promise = require('bluebird')
+const chalk = require('chalk')
 
 const projectBuildStatusTypes = [
     'lastBuild',
     'failure',
     'success'
-];
+]
 
 
 /**
@@ -18,13 +18,14 @@ const projectBuildStatusTypes = [
  */
 const client = mozaik => {
 
-    mozaik.loadApiConfig(config);
+    mozaik.loadApiConfig(config)
     
     function buildRequest(path) {
-        const url = config.get('teamcity.baseUrl') + '/httpAuth' + path;
-        let req = request.get(url);
+        const baseUrl = config.get('teamcity.baseUrl') 
+        const url = `${baseUrl}/httpAuth${path}`
+        let req = request.get(url)
 
-        mozaik.logger.info(chalk.yellow(`[teamcity] fetching from ${ url }`));
+        mozaik.logger.info(chalk.yellow(`[teamcity] fetching from ${ url }`))
 
         return req
             .auth(
@@ -34,34 +35,34 @@ const client = mozaik => {
             .set('Accept', 'application/json')
             .promise()
             .catch(error => {
-                mozaik.logger.error(chalk.red(`[teamcity] ${ error.error }`));
-                throw error;
+                mozaik.logger.error(chalk.red(`[teamcity] ${ error.error }`))
+                throw error
             })
-        ;
+        
     }
 
     const apiMethods = {
         buildtype(params) {
             return buildRequest(`/app/rest/builds?locator=buildType:${ params.buildtypeid }&fields=build(id,buildTypeId,number,status,branchName,startDate,finishDate,queuedDate,href,statusText)`)
                 .then(res => res.body.build)
-            ;
+            
         },
 
         buildtypebuild(params) {
-            var statusFilter = ""
-            if(params.statustype != "lastBuild")
-                statusFilter = ",status:" + params.statustype;
+            var statusFilter = ''
+            if(params.statustype != 'lastBuild')
+                statusFilter = `,status:${params.statustype}`
             
             return buildRequest(`/app/rest/builds?locator=buildType:${ params.buildtypeid }${ statusFilter }&fields=build(id,buildTypeId,number,status,branchName,startDate,finishDate,queuedDate,href,statusText)`)
                 .then(res => res.body)
-            ;
+            
         },
 
         project(params) {
             return buildRequest(`/app/rest/projects/id:${ params.projectid }`)
                 .then(res => {
-                    const project = res.body;
-                    const builds = [];
+                    const project = res.body
+                    const builds = []
                     
                     // Fetch builds details
                     project.buildTypes.buildType.forEach(buildType => {
@@ -72,22 +73,22 @@ const client = mozaik => {
                                     statustype: statusType
                                 })
                                 .then(build => {
-                                    buildType[statusType] = build;
+                                    buildType[statusType] = build
                                 })
-                            );
-                        });
-                    });
+                            )
+                        })
+                    })
 
                     return Promise.all(builds)
                         .then(() => project)
-                    ;
+                    
                 })
-            ;
+            
         }
-    };
+    }
 
-    return apiMethods;
-};
+    return apiMethods
+}
 
 
-module.exports = client;
+module.exports = client

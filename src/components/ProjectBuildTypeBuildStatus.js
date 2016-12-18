@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'; // eslint-disable-line no-unused-vars
+import React, { Component, PropTypes } from 'react' // eslint-disable-line no-unused-vars
 
 
 class ProjectBuildTypeBuildStatus extends Component {
@@ -10,29 +10,29 @@ class ProjectBuildTypeBuildStatus extends Component {
                         <i className="fa fa-question-circle" />
                     </span>
                 </td>
-            );
+            )
         }
 
-        const { build } = this.props;
+        const { build } = this.props
 
-        let iconClasses = 'fa fa-';
+        let iconClasses = 'fa fa-'
         switch (build.status) {
             case 'SUCCESS':
-                iconClasses += 'check-circle';
-                break;
+                iconClasses += 'check-circle'
+                break
 
             case 'FAILURE':
-                iconClasses += 'warning';
-                break;
+                iconClasses += 'warning'
+                break
 
             default:
-                iconClasses += 'question-circle';
-                break;
+                iconClasses += 'question-circle'
+                break
         }
 
-        let statusClasses = 'teamcity__project__buildtype__build__status ';
+        let statusClasses = 'teamcity__project__buildtype__build__status '
         if (build.status) {
-            statusClasses += `teamcity__project__buildtype__build__status--${build.status.toLowerCase()}`;
+            statusClasses += `teamcity__project__buildtype__build__status--${build.status.toLowerCase()}`
         }
 
         return (
@@ -41,13 +41,13 @@ class ProjectBuildTypeBuildStatus extends Component {
                     <i className={iconClasses} />
                 </span>
             </td>
-        );
+        )
     }
 }
 
 ProjectBuildTypeBuildStatus.propTypes = {
     build: PropTypes.object
-};
+}
 
 
-export default ProjectBuildTypeBuildStatus;
+export default ProjectBuildTypeBuildStatus

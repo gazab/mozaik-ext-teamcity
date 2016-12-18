@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import BuildTypeBuild                  from './BuildTypeBuild';
+import React, { Component, PropTypes } from 'react'
+import BuildTypeBuild                  from './BuildTypeBuild'
 
 class BuildTypeBuilds extends Component {
     
@@ -7,11 +7,11 @@ class BuildTypeBuilds extends Component {
         return {
             id:     `teamcity.buildtype.${buildtypeid}`,
             params: { buildtypeid }
-        };
+        }
     }
 
     render() {
-        const { title, apiData: builds }  = this.props;
+        const { title, apiData: builds }  = this.props
 
         return (
             <div>
@@ -28,7 +28,7 @@ class BuildTypeBuilds extends Component {
                     ))}
                 </div>
             </div>
-        );
+        )
     }
 }
 
@@ -36,11 +36,11 @@ BuildTypeBuilds.propTypes = {
     title: PropTypes.string.isRequired,
     buildtypeid:   PropTypes.string.isRequired,
     apiData: PropTypes.array,
-};
+}
 
 BuildTypeBuilds.defaultProps = {
     title: 'TeamCity build type builds',
     apiData: [],
-};
+}
 
-export default BuildTypeBuilds;
+export default BuildTypeBuilds
