@@ -1,43 +1,28 @@
-import React, { Component, PropTypes } from 'react'; // eslint-disable-line no-unused-vars
-import reactMixin                      from 'react-mixin';
-import moment                          from 'moment';
-import { ListenerMixin }               from 'reflux';
-import Mozaik                          from 'mozaik/browser';
-const { BarChart }                     = Mozaik.Component;
-
+import React, { Component, PropTypes } from 'react'
+import moment                          from 'moment'
+import Mozaik                          from 'mozaik/ui'
+const { BarChart }                    = Mozaik
 
 class BuildTypeBuildsHistogram extends Component {
-    constructor(props) {
-        super(props);
 
-        this.state = { builds: [] };
-    }
-
-    getApiRequest() {
-        const { buildtypeid } = this.props;
-
+    static getApiRequest({buildtypeid}) {
         return {
             id:     `teamcity.buildtype.${buildtypeid}`,
             params: { buildtypeid }
-        };
-    }
-
-    onApiData(builds) {
-        const { cap } = this.props;
-
-        this.setState({ builds: builds.slice(0, cap).reverse() });
+        }
     }
 
     render() {
-        const { buildtypeid }    = this.props;
-        const { builds } = this.state;
+        const { cap, apiData: { builds } } = this.props
+
+        const cappedBuilds = builds.slice(0, cap).reverse()
 
         // converts to format required by BarChart component
-        const data = builds.map(build => ({
+        const data = cappedBuilds.map(build => ({
             x:      build.id,
             y:      moment.duration(moment(build.finishDate).diff(moment(build.startDate))) / 1000 / 60, // calculate build duration
             result: build.status ? build.status.toLowerCase() : 'unknown'
-        }));
+        }))
 
         const barChartOptions = {
             mode:            'stacked',
@@ -47,7 +32,7 @@ class BuildTypeBuildsHistogram extends Component {
             yLegendPosition: 'top',
             xPadding:        0.3,
             barClass:        d => `result--${ d.result }`
-        };
+        }
 
         return (
             <div>
@@ -59,22 +44,19 @@ class BuildTypeBuildsHistogram extends Component {
                     <BarChart data={[{ data: data }]} options={barChartOptions}/>
                 </div>
             </div>
-        );
+        )
     }
 }
 
-BuildTypeBuildsHistogram.displayName = 'BuildTypeBuildsHistogram';
-
 BuildTypeBuildsHistogram.propTypes = {
     buildtypeid: PropTypes.string.isRequired,
-    cap: PropTypes.number.isRequired
-};
+    cap: PropTypes.number.isRequired,
+    apiData: PropTypes.array,
+}
 
 BuildTypeBuildsHistogram.defaultProps = {
-    cap: 50
-};
+    cap: 50,
+    apiData: [],
+}
 
-reactMixin(BuildTypeBuildsHistogram.prototype, ListenerMixin);
-reactMixin(BuildTypeBuildsHistogram.prototype, Mozaik.Mixin.ApiConsumer);
-
-export { BuildTypeBuildsHistogram as default };
+export default BuildTypeBuildsHistogram

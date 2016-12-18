@@ -1,50 +1,33 @@
-import React, { Component, PropTypes } from 'react'; // eslint-disable-line no-unused-vars
-import moment                          from 'moment';
-import reactMixin                      from 'react-mixin';
-import { ListenerMixin }               from 'reflux';
-import Mozaik                          from 'mozaik/browser';
-import BuildTypeStatusPreviousBuild          from './BuildTypeStatusPreviousBuild.jsx';
-
+import React, { Component, PropTypes } from 'react' // eslint-disable-line no-unused-vars
+import moment                          from 'moment'
+import BuildTypeStatusPreviousBuild          from './BuildTypeStatusPreviousBuild'
 
 class BuildTypeStatus extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = { builds: [] };
-    }
-
-    getApiRequest() {
-        const { buildtypeid, layout } = this.props;
-
+    static getApiRequest({buildtypeid, layout}) {
         return {
             id:     `teamcity.buildtype.${buildtypeid}`,
             params: { buildtypeid, layout }
-        };
-    }
-
-    onApiData(builds) {
-        this.setState({ builds });
+        }
     }
 
     render() {
-        const { buildtypeid, layout, title } = this.props;
-        const { builds }             = this.state;
+        const { buildtypeid, layout, title, apiData: builds } = this.props
+        
+        let currentNode  = null
+        let previousNode = null
+        let statusClasses
+        let iconClasses
 
-        let currentNode  = null;
-        let previousNode = null;
-        let statusClasses;
-        let iconClasses;
-
-        const finalTitle = title || `TeamCity build config: ${ buildtypeid }`;
+        const finalTitle = title || `TeamCity build config: ${ buildtypeid }`
 
         if (layout === 'bold') {
             if (builds.length > 0) {
-                const currentBuild = builds[0];
+                const currentBuild = builds[0]
                 if (currentBuild.status === 'SUCCESS') {
-                    iconClasses = 'fa fa-check';
+                    iconClasses = 'fa fa-check'
                 }
 
-                statusClasses = `widget__body__colored teamcity__project__buildtype__build__colored_status--${ currentBuild.status.toLowerCase() }`;
+                statusClasses = `widget__body__colored teamcity__project__buildtype__build__colored_status--${ currentBuild.status.toLowerCase() }`
 
                 currentNode = (
                     <div className="teamcity__buildtype-status__current">
@@ -58,7 +41,7 @@ class BuildTypeStatus extends Component {
                             {moment(currentBuild.finishDate).fromNow()}
                         </time>
                     </div>
-                );
+                )
 
             }
 
@@ -66,18 +49,18 @@ class BuildTypeStatus extends Component {
                 <div className={statusClasses}>
                     {currentNode}
                 </div>
-            );
+            )
         }
 
-        iconClasses = 'fa fa-close';
+        iconClasses = 'fa fa-close'
 
         if (builds.length > 0) {
-            const currentBuild = builds[0];
+            const currentBuild = builds[0]
             if (currentBuild.status === 'SUCCESS') {
-                iconClasses = 'fa fa-check';
+                iconClasses = 'fa fa-check'
             }
 
-            statusClasses = `teamcity__buildtype-status__current__status teamcity__buildtype-status__current__status--${ currentBuild.status.toLowerCase() }`;
+            statusClasses = `teamcity__buildtype-status__current__status teamcity__buildtype-status__current__status--${ currentBuild.status.toLowerCase() }`
 
             currentNode = (
                 <div className="teamcity__buildtype-status__current">
@@ -91,10 +74,10 @@ class BuildTypeStatus extends Component {
                         {moment(currentBuild.finishDate).fromNow()}
                     </time>
                 </div>
-            );
+            )
 
             if (builds.length > 1) {
-                previousNode = <BuildTypeStatusPreviousBuild build={builds[1]} />;
+                previousNode = <BuildTypeStatusPreviousBuild build={builds[1]} />
             }
         }
 
@@ -109,24 +92,22 @@ class BuildTypeStatus extends Component {
                     {previousNode}
                 </div>
             </div>
-        );
+        )
     }
 }
 
-BuildTypeStatus.displayName = 'BuildTypeStatus';
+BuildTypeStatus.displayName = 'BuildTypeStatus'
 
 BuildTypeStatus.propTypes = {
     buildtypeid:    PropTypes.string.isRequired,
     layout: PropTypes.string.isRequired,
-    title:  PropTypes.string
-};
+    title:  PropTypes.string,
+    apiData: PropTypes.array
+}
 
 BuildTypeStatus.defaultProps = {
-    layout: 'default'
-};
+    layout: 'default',
+    apiData: []
+}
 
-reactMixin(BuildTypeStatus.prototype, ListenerMixin);
-reactMixin(BuildTypeStatus.prototype, Mozaik.Mixin.ApiConsumer);
-
-
-export default BuildTypeStatus;
+export default BuildTypeStatus

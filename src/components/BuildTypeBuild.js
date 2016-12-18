@@ -1,12 +1,12 @@
-import React, { Component, PropTypes } from 'react'; // eslint-disable-line no-unused-vars
-import moment                          from 'moment';
+import React, { Component, PropTypes } from 'react' // eslint-disable-line no-unused-vars
+import moment                          from 'moment'
 
 
 class BuildTypeBuild extends Component {
     render() {
-        const { build } = this.props;
+        const { build } = this.props
 
-        const classes = `list__item list__item--with-status list__item--with-status--${ build.status.toLowerCase() }`;
+        const classes = `list__item list__item--with-status list__item--with-status--${ build.status.toLowerCase() }`
 
         return (
             <div className={classes}>
@@ -16,11 +16,9 @@ class BuildTypeBuild extends Component {
                     {moment(build.finishDate).fromNow()}
                 </time>
             </div>
-        );
+        )
     }
 }
-
-BuildTypeBuild.displayName = 'BuildTypeBuild';
 
 BuildTypeBuild.propTypes = {
     build: PropTypes.shape({
@@ -28,7 +26,7 @@ BuildTypeBuild.propTypes = {
         status:    PropTypes.string.isRequired,
         finishDate: PropTypes.string.isRequired
     }).isRequired
-};
+}
 
 
-export default BuildTypeBuild;
+export default BuildTypeBuild

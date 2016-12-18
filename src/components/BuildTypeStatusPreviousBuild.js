@@ -1,10 +1,10 @@
-import React, { Component, PropTypes } from 'react'; // eslint-disable-line no-unused-vars
-import moment                          from 'moment';
+import React, { Component, PropTypes } from 'react' // eslint-disable-line no-unused-vars
+import moment                          from 'moment'
 
 
 class BuildTypeStatusPreviousBuild extends Component {
     render() {
-        const { build } = this.props;
+        const { build } = this.props
 
         return (
             <div className="teamcity__buildtype-status__previous">
@@ -12,11 +12,11 @@ class BuildTypeStatusPreviousBuild extends Component {
                 {build.status}&nbsp;
                 {moment(build.finishDate).fromNow()}
             </div>
-        );
+        )
     }
 }
 
-BuildTypeStatusPreviousBuild.displayName = 'BuildTypeStatusPreviousBuild';
+BuildTypeStatusPreviousBuild.displayName = 'BuildTypeStatusPreviousBuild'
 
 BuildTypeStatusPreviousBuild.propTypes = {
     build: PropTypes.shape({
@@ -24,7 +24,7 @@ BuildTypeStatusPreviousBuild.propTypes = {
         result:    PropTypes.string.isRequired,
         finishDate: PropTypes.number.isRequired
     }).isRequired
-};
+}
 
 
-export default BuildTypeStatusPreviousBuild;
+export default BuildTypeStatusPreviousBuild

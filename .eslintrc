@@ -16,24 +16,17 @@
         "react"
     ],
     "rules": {
-        "semi": 2,
+        "semi": [2, "never"],
         "prefer-template": 2,
         "indent": [2, 4, {
             "SwitchCase": 1
-        }],
-        "dot-notation": [2, {
-            "allowKeywords": true
-        }],
-        "key-spacing":          [2, {
-            "align":       "value",
-            "beforeColon": false,
-            "afterColon":  true
         }],
         "quotes": [2, "single"],
         "jsx-quotes": [2, "prefer-double"],
         "array-bracket-spacing": [2, "never"],
         "eol-last": 2,
         "comma-style": [2, "last"],
+        "dot-notation": 2,
         "space-before-function-paren": [2, {
             "anonymous": "always",
             "named": "never"
@@ -52,9 +45,7 @@
             "allowBind": false
         }],
         "react/no-direct-mutation-state": 2,
-        "react/no-deprecated": [2, {
-            "react": "0.13.3"
-        }],
+        "react/no-deprecated": 2,
         "react/prop-types": [1, {}],
         "react/react-in-jsx-scope": 2,
         "react/prefer-es6-class": [2, "always"],

@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react'; // eslint-disable-line no-unused-vars
-import ProjectBuildType                         from './ProjectBuildType.jsx';
+import React, { Component, PropTypes } from 'react' // eslint-disable-line no-unused-vars
+import ProjectBuildType                         from './ProjectBuildType'
 
 class ProjectBuildTypes extends Component {
     render() {
-        const { buildtypes } = this.props;
+        const { buildtypes } = this.props
 
         return (
             <table className="table">
@@ -21,15 +21,13 @@ class ProjectBuildTypes extends Component {
                     <ProjectBuildType key={buildtype.name} buildtype={buildtype} />
                 ))}
             </table>
-        );
+        )
     }
 }
 
-ProjectBuildTypes.displayName = 'ProjectBuildTypes';
-
 ProjectBuildTypes.propTypes = {
     buildtypes: PropTypes.array.isRequired
-};
+}
 
 
-export default ProjectBuildTypes;
+export default ProjectBuildTypes

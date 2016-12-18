@@ -1,4 +1,4 @@
-import convict from 'convict';
+const convict = require('convict')
 
 const config = convict({
     teamcity: {
@@ -21,7 +21,7 @@ const config = convict({
             env:     'TEAMCITY_API_BASIC_AUTH_PASSWORD'
         }
     }
-});
+})
 
 
-export default config;
+module.exports = config
